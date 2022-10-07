@@ -7,17 +7,17 @@
 </head>
 <body>
 <div id="root">
-	<word-relay></word-relay>
+	<word-relay start-word="서울역"></word-relay>
 	<hr/>
-	<word-relay></word-relay>
+	<word-relay start-word="대전"></word-relay>
 	<hr/>
-	<word-relay></word-relay>
+	<word-relay start-word="대한민국"></word-relay>
 </div>
 </body>
 <script>
   const app = Vue.createApp({});
 
-  app.component('word-relay', {
+  app.component('wordRelay', {
     template: `
       <div>{{ word }}</div>
 	    <form v-on:submit="onSubmitForm">
@@ -26,9 +26,10 @@
 	    </form>
       <div>{{ result }}</div>
     `,
+	  props: ['startWord'],
     data() {
       return {
-        word: '',
+        word: this.startWord,
         value: '',
         result: '',
       };
