@@ -6,23 +6,32 @@
 	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-	<div id="root">
-		<div>{{word}}</div>
-		<form v-on:submit="onSubmitForm">
-			<input type="text" v-model="value" ref="answer">
-			<button type="submit">입력!</button>
-		</form>
-		<div>{{result}}</div>
-	</div>
+<div id="root">
+	<word-relay></word-relay>
+	<hr/>
+	<word-relay></word-relay>
+	<hr/>
+	<word-relay></word-relay>
+</div>
 </body>
 <script>
-  const app = Vue.createApp({
+  const app = Vue.createApp({});
+
+  app.component('word-relay', {
+    template: `
+      <div>{{ word }}</div>
+	    <form v-on:submit="onSubmitForm">
+	    	<input type="text" v-model="value" ref="answer">
+	    	<button type="submit">입력!</button>
+	    </form>
+      <div>{{ result }}</div>
+    `,
     data() {
       return {
         word: '',
         value: '',
         result: '',
-      }
+      };
     },
     methods: {
       onSubmitForm(e){
@@ -36,12 +45,12 @@
           this.value = '';
           this.result = '';
           this.$refs.answer.focus();
-	      } else if(this.word[this.word.length - 1] === this.value[0]) {
+        } else if(this.word[this.word.length - 1] === this.value[0]) {
           this.result = '딩동댕';
           this.word = this.value;
           this.value = '';
           this.$refs.answer.focus();
-	      }else {
+        } else {
           this.result = '땡';
           this.value = '';
           this.$refs.answer.focus();
@@ -51,6 +60,8 @@
     mounted() {
 
     }
-  }).mount('#root');
+  });
+
+  app.mount('#root');
 </script>
 </html>
