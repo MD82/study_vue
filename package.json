@@ -1,0 +1,28 @@
+{
+  "name": "response-check",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/md-javastudy/frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/md-javastudy/frontend/issues"
+  },
+  "homepage": "https://github.com/md-javastudy/frontend#readme",
+  "dependencies": {
+    "vue": "^3.2.40"
+  },
+  "devDependencies": {
+    "vue-loader": "^17.0.0",
+    "vue-template-compiler": "^2.7.10",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
