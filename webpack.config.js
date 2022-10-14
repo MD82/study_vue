@@ -30,4 +30,13 @@ module.exports = {
     path: path.join(__dirname, '/dist'),
     publicPath: "/dist",
   },
+  devServer: {
+    devMiddleware: {
+      publicPath: '/dist'
+    },
+    static: {
+      directory: path.resolve(__dirname)
+    },
+    hot: true
+  }
 };
