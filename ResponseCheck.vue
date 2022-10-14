@@ -1,10 +1,10 @@
 <template>
   <div>
     <div id="screen" :class="state" @click="onClickScreen">{{ message }}</div>
-    <div v-show="result.length">
+    <template v-if="result.length">
       <div>평균 시간: {{ average }} ms</div>
       <button @click="onReset">리셋</button>
-    </div>
+    </template>
   </div>
 </template>
 
