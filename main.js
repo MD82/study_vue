@@ -1,4 +1,4 @@
 import { createApp } from 'vue';
-import ResponseCheck from './ResponseCheck';
+import RockScissorsPaper from './Component.vue';
 
-createApp(ResponseCheck).mount('#root');
+createApp(RockScissorsPaper).mount('#root');
