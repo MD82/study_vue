@@ -18,6 +18,7 @@
     Paper : '-218px'
   };
 
+  let interval = null;
   export default {
     data() {
       return {
@@ -38,6 +39,20 @@
 
       },
     },
+    created() {
+    },
+    updated() {
+    },
+    mounted() {
+      interval = setInterval(() => {
+        this.imgCoord = (this.imgCoord === rspCoords.Rock) ? rspCoords.Scissors :
+                        (this.imgCoord === rspCoords.Scissors) ? rspCoords.Paper :
+                        (this.imgCoord === rspCoords.Paper) ? rspCoords.Rock : '';
+      }, 100);
+    },
+    beforeDestroy() {
+      clearInterval(interval);
+    }
   }
 </script>
 
