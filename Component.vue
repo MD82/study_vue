@@ -18,6 +18,18 @@
     Paper : '-218px'
   };
 
+  const scores = {
+    Rock: 0,
+    Scissors : 1,
+    Paper : -1,
+  };
+
+  const computerChoise = (imgCoord) => {
+    return Object.entries(rspCoords).find(function (v) {
+      return v[1] === imgCoord;
+    })[0];
+  };
+
   let interval = null;
   export default {
     data() {
@@ -35,8 +47,30 @@
       }
     },
     methods: {
+      changeHand() {
+        interval = setInterval(() => {
+        this.imgCoord = (this.imgCoord === rspCoords.Rock) ? rspCoords.Scissors :
+                        (this.imgCoord === rspCoords.Scissors) ? rspCoords.Paper :
+                        (this.imgCoord === rspCoords.Paper) ? rspCoords.Rock : '';
+        }, 100);
+      },
       onClickButton(choice) {
-
+        clearInterval(interval);
+        const myScore = scores[choice];
+        const cpuScore = scores[computerChoise(this.imgCoord)];
+        const diff = myScore - cpuScore;
+        if(diff === 0) {
+          this.result = '비겼습니다';
+        } else if([-1, 2].includes(diff)) {
+          this.result = '이겼습니다';
+          this.score += 1;
+        } else {
+          this.result = '졌습니다';
+          this.score -= 1;
+        }
+        setTimeout(() => {
+          this.changeHand();
+        }, 1000);
       },
     },
     created() {
@@ -44,11 +78,7 @@
     updated() {
     },
     mounted() {
-      interval = setInterval(() => {
-        this.imgCoord = (this.imgCoord === rspCoords.Rock) ? rspCoords.Scissors :
-                        (this.imgCoord === rspCoords.Scissors) ? rspCoords.Paper :
-                        (this.imgCoord === rspCoords.Paper) ? rspCoords.Rock : '';
-      }, 100);
+      this.changeHand();
     },
     beforeDestroy() {
       clearInterval(interval);
