@@ -2,8 +2,6 @@
   <tr>
     <td-component v-for="(cellData, index) in rowData"
                   :key="index"
-                  :row-data="rowData"
-                  :cell-data="cellData"
                   :cell-index="index"
                   :row-index="rowIndex"
     ></td-component>
@@ -18,9 +16,13 @@ export default {
     TdComponent,
   },
   props: {
-    rowData: Array,
     rowIndex: Number,
   },
+  computed: {
+    rowData() {
+      return this.$store.state.tableData[this.rowIndex];
+    }
+  }
 }
 </script>
 
