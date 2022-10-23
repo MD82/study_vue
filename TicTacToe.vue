@@ -2,7 +2,7 @@
   <div>
     <div>{{turn}} 님의 턴입니다.</div>
     <table-component :table-data="tableData"/>
-    <div v-if="winner">{{winner}}</div>
+    <div v-if="winner">{{turnMessage}}</div>
   </div>
 </template>
 
@@ -21,18 +21,13 @@
       // turn() {
       //   return this.$store.state.turn;
       // }
+
+      turnMessage() {
+        return this.$store.getters.turnMessage;
+      }
     },
     methods: {
 
-    },
-    created() {
-    },
-    updated() {
-    },
-    mounted() {
-
-    },
-    beforeDestroy() {
     },
   }
 </script>
